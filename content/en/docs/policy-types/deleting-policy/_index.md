@@ -1,13 +1,15 @@
 ---
 title: DeletingPolicy
 description: >-
-  Deletes pre-existing resources from cluster on scheduled time
+  Delete Matching Resources from cluster on scheduled time
 weight: 20
 ---
 
 ## Introduction
 
 `DeletingPolicy` is a Kyverno custom resource that allows cluster administrators to automatically delete Kubernetes resources matching specified criteria, based on a cron schedule. This policy is helpful for implementing lifecycle management, garbage collection, or enforcing retention policies.
+
+This policy provides the same functionality as the `CleanupPolicy` but is designed to use CEL expressions for Kubernetes compatibility.
 
 Unlike admission policies that react to API requests, DeletingPolicy:
 
@@ -18,13 +20,13 @@ Unlike admission policies that react to API requests, DeletingPolicy:
 - Deletes resources when matching rules and conditions are satisfied
 
 ## Key Use Cases
-- Clean up old pods or jobs periodically
+- Find and delete orphaned resources, like completed jobs, periodically
 
 - Remove expired secrets or configmaps
 
 - Enforce TTLs on temporary workloads
 
-- Automatically delete unused preview environments
+- Implement time-bound leases for critical resources
 
 ## Spec Fields
 `schedule` 
